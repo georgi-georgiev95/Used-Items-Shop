@@ -3,8 +3,9 @@ const router = require('express').Router();
 const { isAuth } = require('../middlewares/authMiddleware');
 const electronicService = require('../services/electronicService');
 
-router.get('/catalog', (req, res) => {
-    res.render('items/catalog')
+router.get('/catalog', async (req, res) => {
+    const electronics = await electronicService.getAll().lean();
+    res.render('items/catalog', { electronics });
 });
 
 router.get('/create', isAuth, (req, res) => {
@@ -25,5 +26,9 @@ router.post('/create', isAuth, async (req, res) => {
 router.get('/search', (req, res) => {
     res.render('items/search');
 });
+
+router.get('/details/:itemId', (req, res) => {
+    res.render('items/details');
+})
 
 module.exports = router;
