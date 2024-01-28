@@ -4,7 +4,7 @@ router.get('/register', (req, res) => {
     res.render('users/register');
 });
 
-router.get('login', (req, res) => {
+router.get('/login', (req, res) => {
     res.render('users/login');
 })
 
