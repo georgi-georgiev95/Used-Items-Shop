@@ -24,13 +24,15 @@
                 <!--For all users-->
                 <a href="/"><li>Home</li></a>
                 <a href="/item/catalog"><li>Catalog</li></a>
-                <!--For loggin users-->
+                {{#if isAuthenticated}}
                 <a href="/item/create"><li>Create Offer</li></a>
                 <a href="/item/search"><li>Search</li></a>
                 <a href="/user/logout"><li>Logout</li></a>
+                {{else}}
                 <!--For guest user-->
                 <a href="/user/login"><li>Login</li></a>
                 <a href="/user/register"><li>Register</li></a>
+                {{/if}}
 
             </ul>
 

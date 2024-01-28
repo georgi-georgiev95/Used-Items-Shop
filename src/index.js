@@ -6,6 +6,7 @@ const { PORT, DB_URI } = require('./utils/constants')
 const router = require('./router');
 const expressConfig = require('./config/expressConfig');
 const handlebarsConfig = require('./config/handlebarsConfig');
+const { auth } = require('./middlewares/authMiddleware');
 
 const app = express();
 
@@ -16,6 +17,7 @@ mongoose.connect(DB_URI)
 expressConfig(app);
 handlebarsConfig(app);
 app.use(cookieParser());
+app.use(auth);
 app.use(router);
 
 app.listen(PORT, () => console.log(`App is listening on port: ${PORT}`));
