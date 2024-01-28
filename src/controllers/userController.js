@@ -30,8 +30,14 @@ router.post('/login', async (req, res) => {
         res.cookie(TOKEN, token, { httpOnly: true });
         res.redirect('/');
     } catch (err) {
-        
+        throw new Error(err);
     }
+});
+
+router.get('/logout', (req, res) => {
+    res.clearCookie(TOKEN);
+
+    res.redirect('/');
 })
 
 
