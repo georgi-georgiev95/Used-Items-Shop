@@ -1,18 +1,15 @@
 <section id="detailsPage">
   <div id="detailsInfo">
-    <h1>Name: Laptop HP EliteBook 820 G4</h1>
-    <div class="info"><img src="/image/laptop.webp" /></div>
+    <h1>Name: {{itemData.name}}</h1>
+    <div class="info"><img src="{{itemData.image}}" /></div>
 
     <div class="info">
-      <h3>Type: Laptop</h3>
-      <h3>Year of Production: 2008</h3>
-      <h3>Years of Exploitation: 12</h3>
-      <h3>Damages: The product has minimal signs of use, not affecting its
-        functionality.</h3>
-      <h3>Description: Intel Core i5-7200U (3M, 2.50 GHz, up to 3.10 GHz), 8GB
-        DDR4, 256GB SSD, Intel HD Graphics 620, 12.5 inches (31.75 cm), 1366x768
-        HD</h3>
-      <h2>Price: $153</h2>
+      <h3>Type: {{itemData.type}}</h3>
+      <h3>Year of Production: {{itemData.production}}</h3>
+      <h3>Years of Exploitation: {{itemData.exploitation}}</h3>
+      <h3>Damages: {{itemData.damages}}</h3>
+      <h3>Description: {{itemData.description}}</h3>
+      <h2>Price: ${{itemData.price}}</h2>
     </div>
 
     <!--If there is user logged in-->

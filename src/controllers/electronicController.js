@@ -27,8 +27,10 @@ router.get('/search', (req, res) => {
     res.render('items/search');
 });
 
-router.get('/details/:itemId', (req, res) => {
-    res.render('items/details');
+router.get('/details/:itemId', async (req, res) => {
+    const itemData = await electronicService.getOne(req.params.itemId).lean();
+    console.log(itemData);
+    res.render('items/details', {itemData});
 })
 
 module.exports = router;
