@@ -1,10 +1,12 @@
 const router = require('express').Router();
 
+const {isAuth } = require('../middlewares/authMiddleware');
+
 router.get('/catalog', (req, res) => {
     res.render('items/catalog')
 });
 
-router.get('/create', (req, res) => {
+router.get('/create', isAuth, (req, res) => {
     res.render('items/create');
 });
 
