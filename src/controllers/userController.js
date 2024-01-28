@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const {TOKEN } = require('../utils/constants');
 const userService = require('../services/userService');
 
 router.get('/register', (req, res) => {
@@ -13,9 +14,24 @@ router.get('/login', (req, res) => {
 router.post('/register', async (req, res) => {
     const userData = req.body;
 
-    await userService.register(userData);
+    try {
+        await userService.register(userData);
+        res.redirect('/');
+    } catch (err) {
+        throw new Error(err);
+    }
+});
 
-    res.redirect('/');
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const token = await userService.login(email, password);
+        res.cookie(TOKEN, token, { httpOnly: true });
+        res.redirect('/');
+    } catch (err) {
+        
+    }
 })
 
 

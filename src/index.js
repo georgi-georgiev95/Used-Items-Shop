@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 const { PORT, DB_URI } = require('./utils/constants')
 const router = require('./router');
@@ -14,7 +15,7 @@ mongoose.connect(DB_URI)
 
 expressConfig(app);
 handlebarsConfig(app);
-
+app.use(cookieParser());
 app.use(router);
 
 app.listen(PORT, () => console.log(`App is listening on port: ${PORT}`));
