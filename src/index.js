@@ -15,9 +15,9 @@ mongoose.connect(DB_URI)
     .catch(err => console.log(err));
 
 expressConfig(app);
-handlebarsConfig(app);
 app.use(cookieParser());
 app.use(auth);
+handlebarsConfig(app);
 app.use(router);
 
 app.listen(PORT, () => console.log(`App is listening on port: ${PORT}`));

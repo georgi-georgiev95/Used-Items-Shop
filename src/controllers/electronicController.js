@@ -29,8 +29,12 @@ router.get('/search', (req, res) => {
 
 router.get('/details/:itemId', async (req, res) => {
     const itemData = await electronicService.getOne(req.params.itemId).lean();
-    console.log(itemData);
-    res.render('items/details', {itemData});
-})
+
+    let isOwner = req.user?._id == itemData.owner;
+    let isUser = req.user?._id ? true : false;
+    let isBought = itemData.buyingList.includes(req.user?._id);
+
+    res.render('items/details', { itemData, isOwner, isUser, isBought });
+});
 
 module.exports = router;
