@@ -1,7 +1,11 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-    res.render('home')
+const homeController = require('./controllers/homeController');
+
+router.use(homeController);
+
+router.get('*', (req, res) => {
+    res.redirect('/404');
 })
 
 module.exports = router;
