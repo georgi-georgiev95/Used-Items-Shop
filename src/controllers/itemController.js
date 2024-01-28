@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
-const {isAuth } = require('../middlewares/authMiddleware');
+const { isAuth } = require('../middlewares/authMiddleware');
+const electronicService = require('../services/electronicService');
 
 router.get('/catalog', (req, res) => {
     res.render('items/catalog')
@@ -8,6 +9,17 @@ router.get('/catalog', (req, res) => {
 
 router.get('/create', isAuth, (req, res) => {
     res.render('items/create');
+});
+
+router.post('/create', isAuth, async (req, res) => {
+    const electronicData = {
+        ...req.body,
+        owner: req.user._id
+    };
+
+    await electronicService.create(electronicData);
+
+    res.redirect('/item/catalog');
 });
 
 router.get('/search', (req, res) => {
