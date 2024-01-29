@@ -32,9 +32,16 @@ router.get('/details/:itemId', async (req, res) => {
 
     let isOwner = req.user?._id == itemData.owner;
     let isUser = req.user?._id ? true : false;
-    let isBought = itemData.buyingList.includes(req.user?._id);
+    let isBought = itemData.buyingList == req.user._id;
 
     res.render('items/details', { itemData, isOwner, isUser, isBought });
 });
+
+router.get('/buy/:itemId', async (req, res) => {
+    const id = req.params.itemId;
+    await electronicService.addBuyer(id, req.user._id);
+
+    res.redirect(`/item/details/${id}`);
+})
 
 module.exports = router;

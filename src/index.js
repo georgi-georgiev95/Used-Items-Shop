@@ -6,7 +6,6 @@ const { PORT, DB_URI } = require('./utils/constants')
 const router = require('./router');
 const expressConfig = require('./config/expressConfig');
 const handlebarsConfig = require('./config/handlebarsConfig');
-const { auth } = require('./middlewares/authMiddleware');
 
 const app = express();
 
@@ -15,8 +14,6 @@ mongoose.connect(DB_URI)
     .catch(err => console.log(err));
 
 expressConfig(app);
-app.use(cookieParser());
-app.use(auth);
 handlebarsConfig(app);
 app.use(router);
 
